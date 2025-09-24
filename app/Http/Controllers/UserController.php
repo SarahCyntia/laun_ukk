@@ -59,6 +59,7 @@ class UserController extends Controller
 
         $role = Role::findById($validatedData['role_id']);
         $user->assignRole($role);
+        $user->update();
 
         return response()->json([
             'success' => true,

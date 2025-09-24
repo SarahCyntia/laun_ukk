@@ -20,7 +20,7 @@ class PermissionSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         $menuMaster = ['master', 'master-user', 'master-role'];
-        $menuWebsite = ['website', 'setting', 'beranda', 'pelanggan', 'antar', 'jemput', 'riwayat'];
+        $menuWebsite = ['website', 'setting', 'beranda', 'pelanggan', 'antar', 'jemput', 'riwayat', 'antar-jemput', 'datapelanggan', 'pendapatan', 'transaksilayanan'];
 
         $permissionsByRole = [
             'admin' => ['dashboard', ...$menuMaster, ...$menuWebsite],
@@ -43,7 +43,8 @@ class PermissionSeeder extends Seeder
             ->toArray();
 
         $permissionIdsByRole = [
-            'admin' => $insertPermissions('admin')
+            'admin' => $insertPermissions('admin'),
+            // 'pelanggan' => $insertPermissions('pelanggan')
         ];
 
          foreach ($permissionIdsByRole as $roleName => $permissionIds) {

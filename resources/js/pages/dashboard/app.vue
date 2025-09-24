@@ -6,7 +6,7 @@
       <a class="navbar-brand fw-bold text-info d-flex align-items-center" href="#">
         <span class="fs-4 me-2 ms-20"></span> SLaundry
       </a>
-
+     
       <!-- Mobile Toggle -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,6 +60,33 @@
                   </div>
                 </a>
               </li>
+               <li v-if="!store.isAuthenticated">
+    <router-link class="dropdown-item d-flex align-items-start gap-2" to="/sign-in">
+      <span class="text-warning fs-5">🔒</span>
+      <div>
+        <div class="fw-semibold">Sign in</div>
+        <small class="text-muted">
+          Login
+        </small>
+      </div>
+    </router-link>
+  </li>
+
+  <li v-else>
+    <a @click="signOut()" class="dropdown-item d-flex align-items-start gap-2">
+      <span class="text-danger fs-5">🚪</span>
+      <div>
+        <div class="fw-semibold">Sign Out</div>
+        <small class="text-muted">Keluar dari sistem</small>
+      </div>
+    </a>
+  </li>
+              <!-- <li> -->
+                 <!-- <div class="menu-item px-5">
+            <a @click="signOut()" class="menu-link px-5"> Sign Out </a>
+        </div>
+               <!-- <router-link class="btn btn-light btn-sm rounded-pill fw-semibold text-info" to="/sign-in">Logout</router-link> -
+               </li> -->
             </ul>
           </li>
           <!-- <li class="nav-item">
@@ -117,14 +144,12 @@
       </div>
     </nav> -->
 
-
-
-
   <!-- <main class="min-vh-100">
     <router-view />
   </main> -->
   <router-view />
 
+  
 
 </template>
 
@@ -133,6 +158,38 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
 import { RouterLink } from "vue-router";
+import Swal from "sweetalert2";
+import router from "@/router";
+
+import { useAuthStore } from "@/stores/auth";
+
+const store = useAuthStore();
+const signOut = () => {
+    Swal.fire({
+        icon: "warning",
+        text: "Apakah Anda yakin ingin keluar?",
+        showCancelButton: true,
+        confirmButtonText: "Ya, Keluar",
+        cancelButtonText: "Batal",
+        reverseButtons: true,
+        buttonsStyling: false,
+        customClass: {
+            confirmButton: "btn fw-semibold btn-light-primary",
+            cancelButton: "btn fw-semibold btn-light-danger",
+        },
+    }).then(async(result) => {
+        if (result.isConfirmed) {
+            await store.logout();
+            Swal.fire({
+                icon: "success",
+                text: "Berhasil keluar",
+            }).then(() => {
+                router.push({ name: "sign-in" });
+            });
+        }
+    });
+};
+
 </script>
 
 <style scoped>

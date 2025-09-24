@@ -101,6 +101,30 @@ const MainMenuConfig: Array<MenuItem> = [
                 name: "setting",
                 keenthemesIcon: "setting-2",
             },
+            {
+                heading: "Data Pelanggan",
+                route: "/dashboard/datapelanggan",
+                name: "datapelanggan",
+                keenthemesIcon: "setting-2",
+            },
+            {
+                heading: "Antar-jemput",
+                route: "/admin",
+                name: "antar-jemput",
+                keenthemesIcon: "bi bi-truck",
+            },
+            {
+                heading: "Pendapatan Laundry",
+                route: "/admin/pendapatan",
+                name: "pendapatan",
+                keenthemesIcon: "bi bi-truck",
+            },
+            {
+                heading: "Transaksi Layanan",
+                route: "/admin/transaksilayanan",
+                name: "transaksilayanan",
+                keenthemesIcon: "bi bi-truck",
+            },
         ],
     },
 ];

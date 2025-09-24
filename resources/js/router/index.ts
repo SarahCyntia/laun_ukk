@@ -110,6 +110,26 @@ const routes: Array<RouteRecordRaw> = [
                     breadcrumbs: ["Website", "Setting"],
                 },
             },
+            {
+                path: "/admin",
+                name: "antar-jemput",
+                component: () => import("@/pages/admin/antarjemput.vue"),
+            },
+            {
+                path: "/admin/pendapatan",
+                name: "pendapatan",
+                component: () => import("@/pages/admin/pendapatan.vue"),
+            },
+            {
+                path: "/admin/transaksilayanan",
+                name: "transaksilayanan",
+                component: () => import("@/pages/admin/transaksilayanan.vue"),
+            },
+            {
+                path: "/dashboard/datapelanggan",
+                name: "datapelanggan",
+                component: () => import("@/pages/dashboard/datapelanggan/index.vue"),
+            },
 
             // MASTER
             {
@@ -236,13 +256,15 @@ router.beforeEach(async (to, from, next) => {
     }
 
     // before page access check if page requires authentication
-    if (to.meta.middleware == "auth") {
+     if (to.meta.middleware == "auth") {
         if (authStore.isAuthenticated) {
             if (
                 to.meta.permission &&
                 !authStore.user.permission.includes(to.meta.permission)
             ) {
                 next({ name: "404" });
+            } else if (to.name === "dashboard" && authStore.user.role?.name === "pelanggan") {
+                next({ name: "beranda" });
             } else if (to.meta.checkDetail == false) {
                 next();
             }
@@ -256,6 +278,26 @@ router.beforeEach(async (to, from, next) => {
     } else {
         next();
     }
+    // if (to.meta.middleware == "auth") {
+    //     if (authStore.isAuthenticated) {
+    //         if (
+    //             to.meta.permission &&
+    //             !authStore.user.permission.includes(to.meta.permission)
+    //         ) {
+    //             next({ name: "404" });
+    //         } else if (to.meta.checkDetail == false) {
+    //             next();
+    //         }
+
+    //         next();
+    //     } else {
+    //         next({ name: "sign-in" });
+    //     }
+    // } else if (to.meta.middleware == "guest" && authStore.isAuthenticated) {
+    //     next({ name: "dashboard" });
+    // } else {
+    //     next();
+    // }
 });
 
 router.afterEach(() => {

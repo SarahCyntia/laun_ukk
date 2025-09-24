@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Events\UserRoleUpdated;
 use App\Traits\Uuid;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Spatie\Permission\Traits\HasRoles;
@@ -48,8 +50,13 @@ class User extends Authenticatable implements JWTSubject
 
     protected $appends = ['permission', 'role'];
 
-    protected static function booted()
+     protected static function booted()
     {
+        static::saved(function ($user) {
+            $user->refresh();
+            Log::info("Saved");
+            event(new UserRoleUpdated($user));
+        });
         static::deleted(function ($user) {
             if ($user->photo != null && $user->photo != '') {
                 $old_photo = str_replace('/storage/', '', $user->photo);
@@ -86,5 +93,13 @@ class User extends Authenticatable implements JWTSubject
     public function getPermissionAttribute()
     {
         return $this->getAllPermissions()->pluck('name');
+    }
+     public function role()
+    {
+        return $this->belongsTo(Role::class, 'id_role', 'id');
+    }
+    public function pelanggan()
+    {
+        return $this->hasOne(Pelanggan::class);
     }
 }

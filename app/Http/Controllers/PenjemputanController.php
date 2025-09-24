@@ -15,7 +15,11 @@ class PenjemputanController extends Controller
 {
     $user = auth()->user();
 
-    $kode = 'AJ-' . str_pad(Penjemputan::count() + 1, 6, '0', STR_PAD_LEFT);
+    // $kode = 'AJ-' . str_pad(Penjemputan::count() + 1, 6, '0', STR_PAD_LEFT);
+// misal di store()
+$kode = 'AJ-' . date('Ymd') . '-' . str_pad(Penjemputan::count() + 1, 4, '0', STR_PAD_LEFT);
+
+// Hasil contoh: AJ-20250922-0007
 
     $penjemputan = Penjemputan::create([
         'user_id' => $user->id,

@@ -5,8 +5,7 @@
         <span>🏪 <strong>Status Toko:</strong> BUKA</span>
         <span>⏰ <strong>Jam Operasional:</strong> 06.30 - 21.00 WIB</span>
       </div>
-      <router-link class="btn btn-light btn-sm rounded-pill fw-semibold text-info" to="/pelanggan">Akses Pelanggan
-        →</router-link>
+       <router-link class="btn btn-light btn-sm rounded-pill fw-semibold text-info" to="/pelanggan">Akses Pelanggan →</router-link>
       <!-- <a href="#" class="btn btn-light btn-sm rounded-pill fw-semibold text-info">
         Akses Pelanggan →
       </a> -->
@@ -248,7 +247,7 @@
             <div class="card-content">
               <h2 class="card-title admin-title">Admin</h2>
               <p class="card-description">Kelola pesanan pelanggan</p>
-              <router-link class="access-btn admin-btn" to="/sign-in">Masuk</router-link>
+               <router-link class="access-btn admin-btn" to="/sign-in">Masuk</router-link>
               <!-- <button class="access-btn admin-btn" @click="loginAdmin">
                 <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -377,10 +376,113 @@
           </p>
         </div>
 
-        <div class="services-grid">
-          <div v-for="(item, i) in services" :key="i" class="service-simple-card" @click="pesanSekarang(item.slug)">
-            <img :src="item.icon" class="service-icon" />
-            <h3 class="service-name">{{ item.name }}</h3>
+        <!-- Services Cards -->
+        <div class="services-container">
+          <!-- Cuci Kering -->
+          <div class="service-card">
+            <div class="card-badge popular">Populer</div>
+            <div class="card-icon-image">
+              <!-- <img src="/images/washing-machine.png" alt="Cuci Kering" class="service-image"> -->
+              <img src="/storage/image/cucicuci.png" class="map-image" />
+            </div>
+
+            <h3 class="card-title">Cuci Kering</h3>
+
+            <div class="price-section">
+              <span class="price">Rp 4.500</span>
+              <span class="price-unit">/ kg</span>
+              <span class="price-type">Hemat</span>
+            </div>
+
+            <p class="card-description">
+              Layanan cuci dengan pengeringan tanpa setrika. Cocok untuk pakaian sehari-hari yang tidak memerlukan
+              setrika.
+            </p>
+
+            <ul class="features-list">
+              <li><i class="check-icon"></i>Cuci dengan deterjen premium</li>
+              <li><i class="check-icon"></i>Pengeringan sempurna</li>
+              <li><i class="check-icon"></i>Pewangi pakaian</li>
+              <li><i class="check-icon"></i>Lipat rapi</li>
+            </ul>
+
+            <button class="order-button" @click="pesanSekarang('cuci-kering')">
+              <svg class="button-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3">
+                </path>
+              </svg>
+              Pesan Sekarang
+            </button>
+          </div>
+
+          <!-- Cuci Setrika -->
+          <div class="service-card">
+            <div class="card-badge terlaris">Terlaris</div>
+            <div class="card-icon-image">
+              <img src="/storage/image/cuci_setrika.png" class="map-image" />
+            </div>
+
+            <h3 class="card-title">Cuci Setrika</h3>
+
+            <div class="price-section">
+              <span class="price">Rp 6.500</span>
+              <span class="price-unit">/ kg</span>
+              <span class="price-type">Terbaik</span>
+            </div>
+
+            <p class="card-description">
+              Layanan cuci dengan pengeringan dan setrika. Pakaian Anda akan bersih, wangi, dan rapi siap digunakan.
+            </p>
+
+            <ul class="features-list">
+              <li><i class="check-icon"></i>Cuci dengan deterjen premium</li>
+              <li><i class="check-icon"></i>Pengeringan sempurna</li>
+              <li><i class="check-icon"></i>Setrika profesional</li>
+              <li><i class="check-icon"></i>Pewangi pakaian premium</li>
+            </ul>
+
+            <button class="order-button" @click="pesanSekarang('cuci-setrika')">
+              <svg class="button-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3">
+                </path>
+              </svg>
+              Pesan Sekarang
+            </button>
+          </div>
+
+          <!-- Setrika Saja -->
+          <div class="service-card">
+            <div class="card-badge praktis">Praktis</div>
+            <div class="card-icon-image">
+              <img src="/storage/image/setrika2.png" class="map-image" />
+            </div>
+
+            <h3 class="card-title">Setrika Saja</h3>
+
+            <div class="price-section">
+              <span class="price">Rp 4.500</span>
+              <span class="price-unit">/ kg</span>
+              <span class="price-type">Cepat</span>
+            </div>
+
+            <p class="card-description">
+              Layanan setrika untuk pakaian yang sudah bersih. Membuat pakaian Anda rapi dan siap digunakan.
+            </p>
+
+            <ul class="features-list">
+              <li><i class="check-icon"></i>Setrika profesional</li>
+              <li><i class="check-icon"></i>Lipat rapi</li>
+              <li><i class="check-icon"></i>Pewangi pakaian</li>
+              <li><i class="check-icon"></i>Pengemasan rapi</li>
+            </ul>
+
+            <button class="order-button" @click="pesanSekarang('setrika-saja')">
+              <svg class="button-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3">
+                </path>
+              </svg>
+              Pesan Sekarang
+            </button>
           </div>
         </div>
       </div>
@@ -392,20 +494,24 @@
     </div>
   </div>
 
-  <section class="cta-section text-center text-light py-10">
+   <section class="cta-section text-center text-light py-10">
     <div class="container py-10">
       <h2 class="fw-bold mb-2">Siap Untuk Mencoba Layanan Kami?</h2>
       <p class="mb-4">
         Hubungi kami sekarang untuk mendapatkan layanan laundry terbaik. Kami siap melayani
         kebutuhan laundry Anda dengan profesional.
       </p>
-      <a href="https://wa.me/681231365656" target="_blank" rel="noopener"
-        class="btn btn-light text-primary fw-bold px-4">
+      <a
+        href="https://wa.me/681231365656"
+        target="_blank"
+        rel="noopener"
+        class="btn btn-light text-primary fw-bold px-4"
+      >
         <i class="bi bi-whatsapp me-1"></i> Hubungi Kami Sekarang
       </a>
     </div>
   </section>
-  <footer class="footer-dark text-light pt-5 pb-4">
+    <footer class="footer-dark text-light pt-5 pb-4">
     <div class="container">
       <div class="row gy-4">
         <!-- Brand -->
@@ -469,22 +575,6 @@
 
 <script setup lang="ts">
 
-import { ref } from "vue";
-const services = ref([
-  { name: "Daily Kiloan", slug: "daily-kiloan", icon: "/storage/image/kiloan.png" },
-  { name: "Cuci & Setrika", slug: "cuci-setrika", icon: "/storage/image/cuci_setrika.png" },
-  { name: "Laundry Sepatu", slug: "laundry-sepatu", icon: "/storage/image/sepatu.png" },
-  { name: "Laundry Tas", slug: "laundry-tas", icon: "/storage/image/tas.png" },
-  { name: "Laundry Sarung Bantal", slug: "laundry-karpet", icon: "/storage/image/karpet.png" },
-  { name: "Laundry Bed Cover ", slug: "laundry-gorden", icon: "/storage/image/gorden.png" },
-  { name: "Laundry Sprei", slug: "laundry-stroller", icon: "/storage/image/stroller.png" },
-  { name: "Laundry Boneka", slug: "laundry-boneka", icon: "/storage/image/boneka.png" },
-]);
-
-const pesanSekarang = (slug: string) => {
-  console.log("Pesan layanan:", slug);
-  // arahkan ke halaman pemesanan / kirim event sesuai kebutuhan
-};
 // import TentangAdmin from '..tre'
 // const lihatLayanan = (): void => {
 //   console.log('Navigating to services...')
@@ -496,11 +586,11 @@ const aksesSystem = (): void => {
   // Add system access logic here
 }
 
-// const pesanSekarang = (): void => {
-//   console.log('Navigating to booking page...')
-//   // Add your routing logic here
-//   // Example: router.push('/pesan-antar-jemput')
-// }
+const pesanSekarang = (): void => {
+  console.log('Navigating to booking page...')
+  // Add your routing logic here
+  // Example: router.push('/pesan-antar-jemput')
+}
 
 const lacakSekarang = (): void => {
   console.log('Navigating to tracking page...')
@@ -546,45 +636,9 @@ const loginAdmin = (): void => {
 </script>
 
 <style scoped>
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 kolom */
-  gap: 1rem; /* jarak antar card */
-}
-
-.service-simple-card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 1.5rem 1rem;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  transition: all 0.25s ease;
-  cursor: pointer;
-}
-
-.service-simple-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.12);
-}
-
-.service-icon {
-  width: 90px;
-  height: 90px;
-  object-fit: contain;
-  margin-bottom: 1rem;
-}
-
-.service-name {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #008b8b; /* warna teal seperti contoh */
-}
-
-
 .footer-dark {
   background-color: #2e2e2e;
 }
-
 /* .logo {
   height: 28px;
   color: #ffffff;
@@ -593,34 +647,28 @@ const loginAdmin = (): void => {
   height: 28px;
   color: #ffffff;
 }
-
 .section-title {
   border-bottom: 2px solid #0dcaf0;
   padding-bottom: 4px;
   color: #e5d9d9;
 }
-
 .footer-link {
   color: #ccc;
   text-decoration: none;
   display: inline-block;
   margin-bottom: 6px;
 }
-
 .footer-link:hover {
   color: #0dcaf0;
 }
-
 .divider {
   border-color: rgba(255, 255, 255, 0.1);
 }
 
 .cta-section {
   background: linear-gradient(135deg, #3434f6 0%, #28d7d7 100%);
-  padding: 60px 0;
-  /* tinggi area */
-  margin-top: 60px;
-  /* jarak ke section atas */
+  padding: 60px 0;      /* tinggi area */
+  margin-top: 60px;     /* jarak ke section atas */
 }
 
 

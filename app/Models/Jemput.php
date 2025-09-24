@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Penjemputan extends Model
+class Jemput extends Model
 {
-    protected $table = 'antar_jemput';
+   protected $table = 'antar_jemput';
 
     protected $fillable = [
         'id_pesanan',
@@ -15,6 +15,7 @@ class Penjemputan extends Model
         'nama_pelanggan',
         'no_hp',
         'layanan',
+        'layanan_laundry',
         'alamat_antar',
         'alamat_jemput',
         'status',
